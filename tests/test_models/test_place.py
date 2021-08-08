@@ -6,6 +6,7 @@ from models.place import Place
 from models.base_model import BaseModel
 import pep8
 
+
 class Test_pep8(unittest.TestCase):
     """pep8 test cases class"""
     def test_pep8_conformance(self):
@@ -14,6 +15,7 @@ class Test_pep8(unittest.TestCase):
         result = pep8style.check_files(['models/place.py'])
         self.assertEqual(result.total_errors, 0,
                          "Found code style errors (and warnings).")
+
 
 class test_Place(BaseModel):
     """ tests the place class """

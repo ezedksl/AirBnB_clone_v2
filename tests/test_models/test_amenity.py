@@ -33,7 +33,9 @@ class TestDocs(unittest.TestCase):
         """Class docstring length"""
         self.assertTrue(len(Amenity.__doc__) >= 1)
 
-class test_Amenity(test_basemodel):
+
+
+class test_Amenity(BaseModel):
     """ class that test the Amenity class """
 
     def __init__(self, *args, **kwargs):
