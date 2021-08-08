@@ -2,7 +2,16 @@
 """This module defines a base class for all models in our hbnb clone"""
 import uuid
 from datetime import datetime
+from sqlalchemy import Column, Integer, String, ForeignKey, DateTime
+from sqlalchemy.ext.declarative import declarative_base
+import models
+import os
 
+
+if os.getenv("HBNB_TYPE_STORAGE") == "db":
+    Base = declarative_base()
+else:
+    Base = object
 
 class BaseModel:
     """A base class for all hbnb models"""
