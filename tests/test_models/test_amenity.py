@@ -34,7 +34,6 @@ class TestDocs(unittest.TestCase):
         self.assertTrue(len(Amenity.__doc__) >= 1)
 
 
-
 class test_Amenity(BaseModel):
     """ class that test the Amenity class """
 
