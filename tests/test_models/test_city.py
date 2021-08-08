@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """ file that tests the City class"""
-from tests.test_models.test_base_model import test_basemodel
+from models.base_model import BaseModel
 from models.city import City
 import pep8
 import inspect
@@ -33,7 +33,7 @@ class TestDocs(unittest.TestCase):
         """Class docstring length"""
         self.assertTrue(len(City.__doc__) >= 1)
 
-class test_City(test_basemodel):
+class test_City(BaseModel):
     """ tests the City class """
 
     def __init__(self, *args, **kwargs):
