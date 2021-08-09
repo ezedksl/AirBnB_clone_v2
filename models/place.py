@@ -5,6 +5,7 @@ from sqlalchemy import Column, String, Float, Integer, ForeignKey
 from sqlalchemy.orm import relationship
 import os
 
+
 class Place(BaseModel, Base):
     """ A place to stay """
     __tablename__ = "places"
