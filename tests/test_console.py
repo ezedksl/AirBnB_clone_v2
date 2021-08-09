@@ -38,3 +38,10 @@ class Test_pep8(unittest.TestCase):
                          "HBNBCommand class needs a docstring")
         self.assertTrue(len(HBNBCommand.__doc__) >= 1,
                         "HBNBCommand class needs a docstring")
+
+class test_console(unittest.TestCase):
+    """Tests the console module."""
+    
+    def test_create(self):
+        """tests the create method"""
+        

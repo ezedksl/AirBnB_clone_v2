@@ -5,6 +5,7 @@ from sqlalchemy import Column, String
 from sqlalchemy.orm import relationship
 import os
 
+
 class State(BaseModel):
     """ State class """
     if os.getenv("HBNB_TYPE_STORAGE") == "db":

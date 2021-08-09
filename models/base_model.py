@@ -8,11 +8,6 @@ import models
 import os
 
 
-if os.getenv("HBNB_TYPE_STORAGE") == "db":
-    Base = declarative_base()
-else:
-    Base = object
-
 class BaseModel:
     """A base class for all hbnb models"""
     def __init__(self, *args, **kwargs):

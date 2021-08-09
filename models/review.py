@@ -7,6 +7,7 @@ from sqlalchemy import Column, String
 from sqlalchemy.orm import relationship
 import os
 
+
 class Review(BaseModel):
     """ Review class to store review information """
     __tablename__ = "reviews"
