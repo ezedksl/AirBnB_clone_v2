@@ -1,9 +1,9 @@
 ![img](https://i.imgur.com/6JaLQ4z.png)
 
-# 0x00. AirBnB clone - The console
+# 0x01. AirBnB clone - MySQL
 
 ## Introduction
-This is the first part of the AirBnB clone project for holberton school in this case we need to create the console that will be used for testing and manage objects of our project.
+This is the second part of the AirBnB clone project for holberton school in this case we need to update the console and create the MySQL part that will be used for testing and manage objects of our project.
 
 ## How to start the console
 For start the console you can do it on an interactive mode using ```./console.py``` or on an non-interactive mode using ```echo "command" | ./console.py```(where command is the command that will be passed)
