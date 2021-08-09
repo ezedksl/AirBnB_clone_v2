@@ -11,7 +11,6 @@ from models.city import City
 from models.amenity import Amenity
 from models.review import Review
 from os import getenv
-#from models.engine.db_storage import DBStorage
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
@@ -130,7 +129,7 @@ class HBNBCommand(cmd.Cmd):
                 if key == '' or value == '':
                     continue
                 value = value.replace('_', ' ')
-                if hasattr (obj, key):
+                if hasattr(obj, key):
                     setattr(obj, key, eval(value))
             obj.save()
             print("{}".format(obj.id))
@@ -138,6 +137,7 @@ class HBNBCommand(cmd.Cmd):
             print(" ** class name missing **")
         except NameError:
             print(" ** class doesn't exist **")
+
     def help_create(self):
         """ Help information for the create method """
         print("Creates a class of any type")
