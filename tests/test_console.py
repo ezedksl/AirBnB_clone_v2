@@ -3,6 +3,8 @@
 
 import pep8
 import unittest
+from unittest.mock import patch
+from io import StringIO
 from models.engine.file_storage import FileStorage
 from models.base_model import BaseModel
 from models.user import User
@@ -12,7 +14,7 @@ from models.amenity import Amenity
 from models.place import Place
 from models.review import Review
 from models.engine.db_storage import DBStorage
-from os import getenv
+from os import getenv, pathconf
 from console import HBNBCommand
 
 
@@ -44,4 +46,7 @@ class test_console(unittest.TestCase):
     
     def test_create(self):
         """tests the create method"""
-        
+        with patch ('sys.stdout', new=StringIO()) as f:
+            self.consol.onecmd("create")
+            self.assertEqual(
+                "** class name missing **\n", f.getvalue())
