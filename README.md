@@ -49,4 +49,5 @@ $
 
 ## Authors
 [Miguel Pacheco](https://github.com/Miguel22247)
-[Santiago Borgia](http://github.com/toshi-uy)
+[Ezequiel Martinez](https://github.com/ezedksl)
+[Gabriel Prochnau](https://github.com/)
