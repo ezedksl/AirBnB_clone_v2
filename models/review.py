@@ -5,11 +5,11 @@ from models import place
 from models.base_model import BaseModel
 from sqlalchemy import Column, String
 from sqlalchemy.orm import relationship
-
+import os
 
 class Review(BaseModel):
     """ Review class to store review information """
-    __tablename__ = reviews
+    __tablename__ = "reviews"
     if os.getenv("HBNB_TYPE_STORAGE") == "db":
         place_id = Column(String(60), nullable=False)
         user_id = Column(String(60), nullable=False)
