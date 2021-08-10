@@ -27,7 +27,7 @@ class DBStorage:
                         .format(user, pwd, host, db, pool_pre_ping=True))
         if os.getenv('HBNB_ENV') == 'test':
             Base.metadata.drop_all(bind=self.__engine)
-    
+
     def all(self, cls=None):
         """returns all objects"""
         classes = [City, State, User, Place, Review, Amenity]
