@@ -12,6 +12,7 @@ from models.place import Place
 from models.review import Review
 from models.amenity import Amenity
 
+
 class DBStorage:
     """DBStorage class"""
     __engine = None
@@ -24,7 +25,7 @@ class DBStorage:
         host = os.getenv('HBNB_MYSQL_HOST')
         db = os.getenv('HBNB_MYSQL_DB')
         self.__engine = create_engine('mysql+mysqldb://{}:{}@{}/{}'
-                        .format(user, pwd, host, db, pool_pre_ping=True))
+                                        .format(user, pwd, host, db, pool_pre_ping=True))
         if os.getenv('HBNB_ENV') == 'test':
             Base.metadata.drop_all(bind=self.__engine)
 
