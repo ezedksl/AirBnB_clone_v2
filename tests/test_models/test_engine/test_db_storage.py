@@ -24,6 +24,7 @@ class Test_pep8(unittest.TestCase):
         self.assertEqual(result.total_errors, 0,
                          "Found code style errors (and warnings).")
 
+
 class TestDBStorage(unittest.TestCase):
     '''this will test the database storage'''
 
