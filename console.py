@@ -209,22 +209,27 @@ class HBNBCommand(cmd.Cmd):
         print("Destroys an individual instance of a class")
         print("[Usage]: destroy <className> <objectId>\n")
 
-    def do_all(self, line):
+    def do_all(self, args):
         """Prints all string representation of all instances
         Exceptions:
             NameError: when there is no object that has the name
         """
-        my_list = []
-        if not line:
-            print([v for v in storage.all().values()])
-            return
-        try:
-            args = line.split(" ")
-            if args[0] not in self.classes:
-                raise NameError()
-            print([v for v in storage.all(eval(args[0])).values()])
-        except NameError:
-            print("** class doesn't exist **")
+        """ Shows all objects, or all objects of a class"""
+        print_list = []
+
+        if args:
+            args = args.split(' ')[0]  # remove possible trailing args
+            if args not in HBNBCommand.classes:
+                print("** class doesn't exist **")
+                return
+            for k, v in storage.all(args).items():
+                if k.split('.')[0] == args:
+                    print_list.append(str(v))
+        else:
+            for k, v in storage.all().items():
+                print_list.append(str(v))
+
+        print(print_list)
 
 
     def help_all(self):
