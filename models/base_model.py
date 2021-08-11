@@ -32,12 +32,11 @@ class BaseModel:
                     setattr(self, key, value)
 
     def __str__(self):
-        """returns a string
-        Return:
-            returns a string of class name, id, and dictionary
-        """
+        """Returns a string representation of the instance"""
+        new_dict = self.__dict__.copy()
+        del new_dict['_sa_instance_state']
         return "[{}] ({}) {}".format(
-            type(self).__name__, self.id, self.to_dict())
+            type(self).__name__, self.id, new_dict)
 
     def __repr__(self):
         """Return string representation"""
