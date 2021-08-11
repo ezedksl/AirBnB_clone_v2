@@ -1,10 +1,8 @@
 #!/usr/bin/python3
 """ Review module for the HBNB project """
 from sqlalchemy.sql.functions import user
-from models import place
 from models.base_model import BaseModel
 from sqlalchemy import Column, String
-from sqlalchemy.orm import relationship
 import os
 
 
