@@ -123,9 +123,9 @@ class HBNBCommand(cmd.Cmd):
             NameError: when there is no object taht has the name
         """
         try:
-            if not line:
+            if not args:
                 raise SyntaxError()
-            my_list = line.split(" ")
+            my_list = args.split(" ")
             obj = eval("{}()".format(my_list[0]))
             params = my_list[1:]
             for param in params:
