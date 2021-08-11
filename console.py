@@ -119,13 +119,13 @@ class HBNBCommand(cmd.Cmd):
     def do_create(self, args):
         """ Create an object of any class"""
 
-        total = line.split(" ")
+        total = args.split(" ")
         if len(total) < 1:
             print("** class name missing **")
             return
 
         if total[0] in HBNBCommand.classes:
-            my_list = line.split(" ")
+            my_list = args.split(" ")
 
             obj = eval(my_list[0])()
 
