@@ -117,30 +117,39 @@ class HBNBCommand(cmd.Cmd):
         pass
 
     def do_create(self, args):
-        """Creates a new instance of BaseModel, saves it
-        Exceptions:
-            SyntaxError: when there is no args given
-            NameError: when there is no object taht has the name
-        """
-        try:
-            if not args:
-                raise SyntaxError()
-            my_list = args.split(" ")
-            obj = eval((my_list[0]))
-            params = my_list[1:]
-            for param in params:
-                k, v = param.split("=")
-                if k == '' or v == '':
-                    continue
-                v = v.replace('_', ' ')
-                if hasattr(obj, k):
-                    setattr(obj, k, eval(v))
-            obj.save()
-            print("{}".format(obj.id))
-        except SyntaxError:
+        """Create an object of any class"""
+        if not args:
             print("** class name missing **")
-        except NameError:
+            return
+        params = args.split()
+        if params[0] not in HBNBCommand.classes:
             print("** class doesn't exist **")
+            return
+        new_instance = eval(params[0])()
+        for i in range(1, len(params)):
+            arg = params[i].split('=', 1)
+            value = ""
+            if arg[1][0] == '"' or arg[1][0] == "'":
+                value = arg[1][1:-1]
+                if '"' or "'" in value:
+                    value = value.replace('"', '\"')
+                if "_" in value:
+                    value = value.replace('_', ' ')
+            else:
+                if '.' in arg[1]:
+                    try:
+                        value = float(arg[1])
+                    except:
+                        continue
+                else:
+                    try:
+                        value = int(arg[1])
+                    except:
+                        continue
+            if value != "":
+                setattr(new_instance, arg[0], value)
+        print(new_instance.id)
+        new_instance.save()
 
     def help_create(self):
         """ Help information for the create method """
