@@ -118,38 +118,34 @@ class HBNBCommand(cmd.Cmd):
 
     def do_create(self, args):
         """Create an object of any class"""
-        if not args:
-            print("** class name missing **")
-            return
-        params = args.split()
-        if params[0] not in HBNBCommand.classes:
-            print("** class doesn't exist **")
-            return
-        new_instance = eval(params[0])()
-        for i in range(1, len(params)):
-            arg = params[i].split('=', 1)
-            value = ""
-            if arg[1][0] == '"' or arg[1][0] == "'":
-                value = arg[1][1:-1]
-                if '"' or "'" in value:
-                    value = value.replace('"', '\"')
-                if "_" in value:
-                    value = value.replace('_', ' ')
-            else:
-                if '.' in arg[1]:
-                    try:
-                        value = float(arg[1])
-                    except:
-                        continue
+        try:
+            if not args:
+                raise SyntaxError()
+
+            my_list = args.split(" ")
+            kwargs = {}
+            for i in range(1, len(my_list)):
+                key, value = tuple(my_list[i].split("="))
+                if value[0] == '"':
+                    value = value.strip('"').replace("_", " ")
                 else:
                     try:
-                        value = int(arg[1])
-                    except:
+                        value = eval(value)
+                    except (SyntaxError, NameError):
                         continue
-            if value != "":
-                setattr(new_instance, arg[0], value)
-        print(new_instance.id)
-        new_instance.save()
+                kwargs[key] = value
+            if kwargs == {}:
+                obj = eval(my_list[0])()
+            else:
+                obj = eval(my_list[0])(**kwargs)
+                storage.new(obj)
+            print(obj.id)
+            obj.save()
+
+        except SyntaxError:
+            print("** class name missing **")
+        except NameError:
+            print("** class doesn't exist **")
 
     def help_create(self):
         """ Help information for the create method """
@@ -228,21 +224,20 @@ class HBNBCommand(cmd.Cmd):
             NameError: when there is no object that has the name
         """
         """ Shows all objects, or all objects of a class"""
-        print_list = []
+        if not args:
+            o = storage.all()
+            print([o[k].__str__() for k in o])
+            return
+        try:
+            args = args.split(" ")
+            if args[0] not in HBNBCommand.classes:
+                raise NameError()
 
-        if args:
-            args = args.split(' ')[0]  # remove possible trailing args
-            if args not in HBNBCommand.classes:
-                print("** class doesn't exist **")
-                return
-            for k, v in storage.all(args).items():
-                if k.split('.')[0] == args:
-                    print_list.append(str(v))
-        else:
-            for k, v in storage.all().items():
-                print_list.append(str(v))
+            o = storage.all(eval(args[0]))
+            print([o[k].__str__() for k in o])
 
-        print(print_list)
+        except NameError:
+            print("** class doesn't exist **")
 
     def help_all(self):
         """ Help information for the all command """
