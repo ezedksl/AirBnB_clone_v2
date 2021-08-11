@@ -41,12 +41,13 @@ class Test_pep8(unittest.TestCase):
         self.assertTrue(len(HBNBCommand.__doc__) >= 1,
                         "HBNBCommand class needs a docstring")
 
+
 class test_console(unittest.TestCase):
     """Tests the console module."""
-    
+
     def test_create(self):
         """tests the create method"""
-        with patch ('sys.stdout', new=StringIO()) as f:
+        with patch('sys.stdout', new=StringIO()) as f:
             self.consol.onecmd("create")
             self.assertEqual(
                 "** class name missing **\n", f.getvalue())
