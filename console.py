@@ -103,7 +103,7 @@ class HBNBCommand(cmd.Cmd):
         """ Prints the help documentation for quit  """
         print("Exits the program with formatting\n")
 
-    def do_EOF(self, arg):
+    def do_EOF(self, args):
         """ Handles EOF to exit program """
         print()
         exit()
@@ -117,26 +117,29 @@ class HBNBCommand(cmd.Cmd):
         pass
 
     def do_create(self, args):
-        """ Create an object of any class"""
-
-        total = args.split(" ")
-        if len(total) < 1:
-            print("** class name missing **")
-            return
-
-        if total[0] in HBNBCommand.classes:
+        """Creates a new instance of BaseModel, saves it
+        Exceptions:
+            SyntaxError: when there is no args given
+            NameError: when there is no object taht has the name
+        """
+        try:
+            if not args:
+                raise SyntaxError()
             my_list = args.split(" ")
-
-            obj = eval(my_list[0])()
-
-            for key_values in my_list[1:]:
-                k, v = key_values.split("=")
-                v = v.replace('_', " ")
-                setattr(obj, k, eval(v))
-
+            obj = eval((my_list[0]))
+            params = my_list[1:]
+            for param in params:
+                k, v = param.split("=")
+                if k == '' or v == '':
+                    continue
+                v = v.replace('_', ' ')
+                if hasattr(obj, k):
+                    setattr(obj, k, eval(v))
             obj.save()
             print("{}".format(obj.id))
-        else:
+        except SyntaxError:
+            print("** class name missing **")
+        except NameError:
             print("** class doesn't exist **")
 
     def help_create(self):
