@@ -48,6 +48,6 @@ class test_console(unittest.TestCase):
     def test_create(self):
         """tests the create method"""
         with patch('sys.stdout', new=StringIO()) as f:
-            self.consol.onecmd("create")
+            self.console.onecmd("create")
             self.assertEqual(
                 "** class name missing **\n", f.getvalue())
