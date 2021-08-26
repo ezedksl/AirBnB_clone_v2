@@ -5,6 +5,7 @@ import datetime
 
 
 def do_pack():
+    """Packer function (adds creation date to file name)."""
     op.local("mkdir versions &> /dev/null")
     now = datetime.datetime.now()
     version = "{}{}{}{}{}{}".format(now.year, now.month, now.day,
